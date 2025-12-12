@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load django_bootstrap5 %}
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remover Funcionário</title>
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Tem certeza que deseja remover o funcionário "{{ object.nome }}"?</h2>
+    <ul>
+        <li>CPF: {{ object.cpf }}</li>
+        <li>E-mail: {{ object.email }}</li>
+        <li>Remuneração: R${{ object.remuneracao|floatformat:2 }}</li>
+    </ul>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim, remover</button>
+        <a href="{% url 'lista_funcionarios' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
